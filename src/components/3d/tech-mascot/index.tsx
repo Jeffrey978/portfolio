@@ -65,18 +65,32 @@ export function TechMascot({ modelUrl }: TechMascotProps) {
     setGesture("nod");
   }, [pathname, isMounted]);
 
+  const hasNoddedRef = useRef(false);
+
   // Observer for scrolling into sections to trigger nod reaction
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout | null = null;
+
     const handleScrollReaction = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > 300 && scrollY < 400 && gesture === "idle") {
-        setGesture("nod");
-      }
+      if (hasNoddedRef.current) return;
+      if (scrollTimeout) return;
+
+      scrollTimeout = setTimeout(() => {
+        scrollTimeout = null;
+        const scrollY = window.scrollY;
+        if (scrollY > 250 && !hasNoddedRef.current) {
+          hasNoddedRef.current = true;
+          setGesture("nod");
+        }
+      }, 150);
     };
 
     window.addEventListener("scroll", handleScrollReaction, { passive: true });
-    return () => window.removeEventListener("scroll", handleScrollReaction);
-  }, [gesture]);
+    return () => {
+      window.removeEventListener("scroll", handleScrollReaction);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   // Handle click on robot
   const handleRobotClick = useCallback(() => {

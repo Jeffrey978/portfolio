@@ -11,9 +11,9 @@ export function ProjectRing() {
   const activeCardIndexRef = useRef(0);
   const [radius, setRadius] = useState(440);
 
-  // Animation & Physics Refs (no React re-render per frame for buttery 120fps motion)
+  // Animation & Physics Refs
   const ringRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const targetRotation = useRef(0);
   const currentRotation = useRef(0);
   const isDragging = useRef(false);
@@ -23,6 +23,7 @@ export function ProjectRing() {
   const lastDeltaX = useRef(0);
   const touchAxis = useRef<"horizontal" | "vertical" | null>(null);
   const reqId = useRef<number | null>(null);
+  const wheelSnapTimer = useRef<NodeJS.Timeout | null>(null);
 
   // Responsive radius calculation
   useEffect(() => {
@@ -50,7 +51,6 @@ export function ProjectRing() {
       if (!running) return;
 
       const diff = targetRotation.current - currentRotation.current;
-      // High-performance spring lerp
       currentRotation.current += diff * 0.12;
 
       // Apply directly to DOM to bypass React re-rendering overhead
@@ -78,117 +78,139 @@ export function ProjectRing() {
     };
   }, []);
 
-  // Rotate cleanly to a specific project index
-  const rotateTo = useCallback((index: number) => {
+  // Smart rotateTo: rotates along shortest rotational path without unwinding
+  const rotateTo = useCallback((targetIndex: number) => {
     soundFX.playClick();
     const anglePerCard = 360 / CASE_STUDIES.length;
-    targetRotation.current = -index * anglePerCard;
+    let diff = targetIndex - activeCardIndexRef.current;
+    if (diff > CASE_STUDIES.length / 2) diff -= CASE_STUDIES.length;
+    if (diff < -CASE_STUDIES.length / 2) diff += CASE_STUDIES.length;
+    targetRotation.current -= diff * anglePerCard;
   }, []);
 
-  // --- Mouse Drag Handlers (Desktop) ---
-  const handleMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    hasDragged.current = false;
-    startX.current = e.clientX;
-    lastDeltaX.current = 0;
-  };
+  // --- Native Non-Passive Event Listeners for Butter-Smooth Touch & Wheel ---
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging.current) return;
-    const deltaX = e.clientX - startX.current;
-    if (Math.abs(deltaX) > 4) {
-      hasDragged.current = true;
-    }
-    lastDeltaX.current = deltaX;
-    targetRotation.current += deltaX * 0.3;
-    startX.current = e.clientX;
-  }, []);
+    // Mouse handlers
+    const onMouseDown = (e: MouseEvent) => {
+      isDragging.current = true;
+      hasDragged.current = false;
+      startX.current = e.clientX;
+      lastDeltaX.current = 0;
+    };
 
-  const handleMouseUp = useCallback(() => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    // Apply inertia and snap to nearest card
-    const anglePerCard = 360 / CASE_STUDIES.length;
-    targetRotation.current += lastDeltaX.current * 0.5;
-    const nearest = Math.round(-targetRotation.current / anglePerCard);
-    targetRotation.current = -nearest * anglePerCard;
-  }, []);
-
-  // --- Touch Handlers (Mobile) ---
-  const handleTouchStart = (e: React.TouchEvent) => {
-    isDragging.current = true;
-    hasDragged.current = false;
-    const touch = e.touches[0];
-    startX.current = touch.clientX;
-    startY.current = touch.clientY;
-    lastDeltaX.current = 0;
-    touchAxis.current = null;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging.current) return;
-    const touch = e.touches[0];
-    const dx = touch.clientX - startX.current;
-    const dy = touch.clientY - startY.current;
-
-    // Disambiguate touch intent: page scroll (vertical) vs carousel swipe (horizontal)
-    if (touchAxis.current === null) {
-      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
-        if (Math.abs(dy) > Math.abs(dx)) {
-          // User is scrolling the page vertically -> release carousel immediately
-          touchAxis.current = "vertical";
-          isDragging.current = false;
-          return;
-        } else {
-          // User is swiping the carousel horizontally
-          touchAxis.current = "horizontal";
-        }
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      const deltaX = e.clientX - startX.current;
+      if (Math.abs(deltaX) > 4) {
+        hasDragged.current = true;
       }
-    }
+      lastDeltaX.current = deltaX;
+      targetRotation.current += deltaX * 0.35;
+      startX.current = e.clientX;
+    };
 
-    if (touchAxis.current === "horizontal") {
-      hasDragged.current = true;
-      lastDeltaX.current = dx;
-      targetRotation.current += dx * 0.35;
+    const onMouseUp = () => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+      const anglePerCard = 360 / CASE_STUDIES.length;
+      targetRotation.current += lastDeltaX.current * 0.45;
+      const nearest = Math.round(-targetRotation.current / anglePerCard);
+      targetRotation.current = -nearest * anglePerCard;
+    };
+
+    // Touch handlers with active preventDefault for horizontal swipe
+    const onTouchStart = (e: TouchEvent) => {
+      isDragging.current = true;
+      hasDragged.current = false;
+      const touch = e.touches[0];
       startX.current = touch.clientX;
       startY.current = touch.clientY;
-    }
-  };
+      lastDeltaX.current = 0;
+      touchAxis.current = null;
+    };
 
-  const handleTouchEnd = () => {
-    if (!isDragging.current && touchAxis.current !== "horizontal") return;
-    isDragging.current = false;
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging.current) return;
+      const touch = e.touches[0];
+      const dx = touch.clientX - startX.current;
+      const dy = touch.clientY - startY.current;
 
-    // Apply swipe momentum and snap smoothly to the nearest card
-    const anglePerCard = 360 / CASE_STUDIES.length;
-    targetRotation.current += lastDeltaX.current * 0.4;
-    const nearest = Math.round(-targetRotation.current / anglePerCard);
-    targetRotation.current = -nearest * anglePerCard;
-  };
+      if (touchAxis.current === null) {
+        if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+          if (Math.abs(dy) > Math.abs(dx)) {
+            // Vertical scroll: yield immediately to native page scroll
+            touchAxis.current = "vertical";
+            isDragging.current = false;
+            return;
+          } else {
+            // Horizontal swipe: lock to carousel
+            touchAxis.current = "horizontal";
+          }
+        }
+      }
 
-  // Wheel listener
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        targetRotation.current -= e.deltaX * 0.2;
-      } else if (e.shiftKey) {
-        targetRotation.current -= e.deltaY * 0.2;
+      if (touchAxis.current === "horizontal") {
+        // Prevent vertical page jitter while swiping carousel horizontally
+        if (e.cancelable) e.preventDefault();
+        hasDragged.current = true;
+        lastDeltaX.current = dx;
+        targetRotation.current += dx * 0.4;
+        startX.current = touch.clientX;
+        startY.current = touch.clientY;
       }
     };
 
-    container.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
+    const onTouchEnd = () => {
+      if (!isDragging.current && touchAxis.current !== "horizontal") return;
+      isDragging.current = false;
+      const anglePerCard = 360 / CASE_STUDIES.length;
+      targetRotation.current += lastDeltaX.current * 0.45;
+      const nearest = Math.round(-targetRotation.current / anglePerCard);
+      targetRotation.current = -nearest * anglePerCard;
+    };
+
+    // Desktop Wheel scroll support with snap
+    const onWheel = (e: WheelEvent) => {
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (Math.abs(delta) > 5) {
+        targetRotation.current -= delta * 0.2;
+
+        if (wheelSnapTimer.current) clearTimeout(wheelSnapTimer.current);
+        wheelSnapTimer.current = setTimeout(() => {
+          const anglePerCard = 360 / CASE_STUDIES.length;
+          const nearest = Math.round(-targetRotation.current / anglePerCard);
+          targetRotation.current = -nearest * anglePerCard;
+        }, 180);
+      }
+    };
+
+    // Attach listeners
+    stage.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+
+    stage.addEventListener("touchstart", onTouchStart, { passive: true });
+    stage.addEventListener("touchmove", onTouchMove, { passive: false });
+    stage.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    stage.addEventListener("wheel", onWheel, { passive: true });
 
     return () => {
-      container.removeEventListener("wheel", onWheel);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      stage.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+
+      stage.removeEventListener("touchstart", onTouchStart);
+      stage.removeEventListener("touchmove", onTouchMove);
+      stage.removeEventListener("touchend", onTouchEnd);
+
+      stage.removeEventListener("wheel", onWheel);
+      if (wheelSnapTimer.current) clearTimeout(wheelSnapTimer.current);
     };
-  }, [handleMouseMove, handleMouseUp]);
+  }, []);
 
   const anglePerCard = 360 / CASE_STUDIES.length;
 
@@ -212,11 +234,7 @@ export function ProjectRing() {
 
       {/* 3D Perspective Stage */}
       <div
-        ref={containerRef}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        ref={stageRef}
         className="relative w-full max-w-full h-[420px] sm:h-[500px] md:h-[550px] flex items-center justify-center cursor-grab active:cursor-grabbing overflow-hidden [contain:paint] touch-pan-y"
         style={{
           perspective: "1200px",
@@ -239,7 +257,7 @@ export function ProjectRing() {
             return (
               <div
                 key={project.slug}
-                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0c0c0e]/95 backdrop-blur-xl p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-[border-color,box-shadow] duration-200 hover:border-white/30 group"
+                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0e0e12] p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-[border-color,box-shadow] duration-200 hover:border-white/30 group"
                 style={{
                   transformStyle: "preserve-3d",
                   WebkitTransformStyle: "preserve-3d",
@@ -269,17 +287,17 @@ export function ProjectRing() {
                 </div>
 
                 {/* Real Project Screenshot */}
-                <div className="relative my-2 sm:my-3 h-32 sm:h-38 md:h-44 rounded-xl border border-white/10 overflow-hidden bg-black/80 group-hover:border-white/20 transition-all pointer-events-none">
+                <div className="relative my-2 sm:my-3 h-32 sm:h-38 md:h-44 rounded-xl border border-white/10 overflow-hidden bg-black/90 group-hover:border-white/20 transition-all pointer-events-none">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover object-top transition-all duration-500 opacity-90 group-hover:opacity-100"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/10 pointer-events-none" />
 
                   {/* Badge */}
-                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded text-[9px] font-mono uppercase tracking-wider bg-black/70 backdrop-blur-md border border-white/10 text-neutral-300">
+                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded text-[9px] font-mono uppercase tracking-wider bg-black/80 border border-white/10 text-neutral-300">
                     {project.liveUrl ? "LIVE SITE" : "TELEMETRY"}
                   </div>
 
@@ -321,8 +339,8 @@ export function ProjectRing() {
       <div className="mt-4 sm:mt-6 flex items-center gap-4">
         <button
           onClick={() => {
-            const nextIdx = (activeCardIndex - 1 + CASE_STUDIES.length) % CASE_STUDIES.length;
-            rotateTo(nextIdx);
+            const prevIdx = (activeCardIndex - 1 + CASE_STUDIES.length) % CASE_STUDIES.length;
+            rotateTo(prevIdx);
           }}
           data-cursor="PREV"
           aria-label="Previous Project"
