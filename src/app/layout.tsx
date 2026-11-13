@@ -5,6 +5,7 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { CustomCursor } from "@/components/ui/cursor";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { TechMascot } from "@/components/3d/tech-mascot";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -78,6 +79,7 @@ export default function RootLayout({
             {children}
           </div>
           <SiteFooter />
+          <TechMascot />
         </SmoothScrollProvider>
       </body>
     </html>
