@@ -218,7 +218,7 @@ export const PROFILE = {
     linkedin: "https://linkedin.com/in/jeffreyatuluku",
   },
   introStatement:
-    "Independent Web3 researcher, smart contract auditor and full-stack developer based in Port Harcourt. I audit protocols, research decentralized systems, and build high-assurance web applications, start to finish.",
+    "Independent Web3 researcher and smart contract auditor in Port Harcourt. I review protocols and build high-assurance web applications, start to finish.",
   aboutStatement:
     "I’m Jeffrey. Computer Scientist, Web3 researcher and smart contract security auditor. I spend my days analyzing EVM bytecode, dissecting consensus mechanisms, and building web products that can't be tricked.",
   experience: [

@@ -202,7 +202,7 @@ export function ProjectRing() {
                   <div className="space-y-1">
                     {project.metrics.slice(0, 2).map((m, idx) => (
                       <div key={idx} className="text-[11px] font-mono text-neutral-300 flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-cyan-400" />
+                        <span className="w-1 h-1 rounded-full bg-white/70" />
                         <span>{m}</span>
                       </div>
                     ))}

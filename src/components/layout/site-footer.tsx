@@ -65,7 +65,7 @@ export function SiteFooter() {
             <a
               href={`mailto:${PROFILE.email}`}
               onClick={() => soundFX.playClick()}
-              className="text-white hover:text-cyan-300 font-mono text-sm underline underline-offset-4 flex items-center gap-1.5 transition-colors"
+              className="text-white hover:text-neutral-300 font-mono text-sm underline underline-offset-4 flex items-center gap-1.5 transition-colors"
             >
               <span>{PROFILE.email}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
