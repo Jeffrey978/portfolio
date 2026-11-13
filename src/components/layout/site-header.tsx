@@ -37,7 +37,7 @@ export function SiteHeader() {
             className="flex flex-col group shrink-0"
           >
             <span className="font-display text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-neutral-300 transition-colors">
-              {PROFILE.name}
+              {PROFILE.fullName}
             </span>
             <span className="text-[11px] font-mono text-neutral-400 truncate hidden md:inline">
               Web3 Researcher &amp; Security Auditor

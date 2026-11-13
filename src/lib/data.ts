@@ -115,7 +115,7 @@ export const TECH_STACK = [
 ];
 
 export const PROFILE = {
-  name: "Jeffrey Atuluku",
+  name: "Atuluku Jeffrey",
   role: "Creative Technologist & Full-Stack Systems Engineer",
   handle: "jeffrey978",
   github: "https://github.com/Jeffrey978",

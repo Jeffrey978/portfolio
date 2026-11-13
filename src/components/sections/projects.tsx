@@ -189,7 +189,7 @@ export function ProjectsSection() {
             </h2>
           </div>
           <p className="text-neutral-400 text-sm max-w-md font-sans leading-relaxed">
-            Four production systems engineered by Jeffrey Atuluku: marketplace escrow, local-first browser interception, transit booking, and decentralized AI intelligence.
+            Four production systems engineered by Atuluku Jeffrey: marketplace escrow, local-first browser interception, transit booking, and decentralized AI intelligence.
           </p>
         </div>
 

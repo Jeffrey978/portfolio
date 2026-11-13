@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "Portfolio of Jeffrey (B.Sc. Computer Science) — Independent Web3 researcher, smart contract security auditor, and full-stack web developer based in Port Harcourt, Nigeria. Creator of PulseSwitch, ServHive, and decentralized AI automation engines.",
   keywords: [
     "Jeffrey",
-    "Jeffrey Atuluku",
+    "Atuluku Jeffrey",
     "Smart Contract Security Auditor",
     "Web3 Researcher",
     "Full-Stack Web Developer",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "Foundry",
     "Next.js 16"
   ],
-  authors: [{ name: "Jeffrey Atuluku", url: "https://github.com/Jeffrey978" }],
+  authors: [{ name: "Atuluku Jeffrey", url: "https://github.com/Jeffrey978" }],
   openGraph: {
     title: "Jeffrey // Web3 Researcher & Smart Contract Security Auditor",
     description: "High-assurance protocol audits, Web3 research, and full-stack software architectures.",

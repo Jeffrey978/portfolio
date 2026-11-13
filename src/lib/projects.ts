@@ -213,7 +213,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const PROFILE = {
   name: "Jeffrey",
-  fullName: "Jeffrey Atuluku",
+  fullName: "Atuluku Jeffrey",
   role: "Web3 Researcher, Smart Contract Security Auditor & Full-Stack Web Developer",
   degree: "B.Sc. Computer Science",
   location: "Port Harcourt, NG",
@@ -227,7 +227,7 @@ export const PROFILE = {
   introStatement:
     "Independent Web3 researcher and smart contract auditor in Port Harcourt. I review protocols and build high-assurance web applications, start to finish.",
   aboutStatement:
-    "I’m Jeffrey. Computer Scientist, Web3 researcher and smart contract security auditor. I spend my days analyzing EVM bytecode, dissecting consensus mechanisms, and building web products that can't be tricked.",
+    "I’m Atuluku Jeffrey — Computer Scientist, Web3 researcher and smart contract security auditor. I spend my days analyzing EVM bytecode, dissecting consensus mechanisms, and building web products that can't be tricked.",
   experience: [
     {
       year: "2024—Now",
