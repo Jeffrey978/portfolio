@@ -6,6 +6,7 @@ export interface CaseStudy {
   role: string;
   year: string;
   client: string;
+  image: string;
   metrics: string[];
   tags: string[];
   liveUrl?: string;
@@ -27,6 +28,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Lead Systems Architect & Backend Engineer",
     year: "2026",
     client: "Financial Infrastructure",
+    image: "/projects/pulseswitch.png",
     metrics: [
       "< 50ms Dispute Classification",
       "99.99% Telemetry Uptime",
@@ -57,6 +59,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Founder & Full-Stack Systems Architect",
     year: "2026",
     client: "Port Harcourt Services",
+    image: "/projects/servhive.png",
     metrics: [
       "100% Escrow Protection",
       "10+ Vetted Trades",
@@ -88,6 +91,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Independent Smart Contract Security Auditor",
     year: "2025—2026",
     client: "DeFi Protocols & DAOs",
+    image: "/projects/smart-contract-audits.png",
     metrics: [
       "14+ Critical/High Findings",
       "$18M+ TVL Protected",
@@ -118,6 +122,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Web3 Researcher & Data Engineer",
     year: "2025—2026",
     client: "Decentralized AI Infrastructure",
+    image: "/projects/subnet-mining.png",
     metrics: [
       "Real-Time Emission Tracking",
       "Automated Risk Scoring",
@@ -148,6 +153,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Creator & Frontend Engineer",
     year: "2026",
     client: "Developer Tooling",
+    image: "/projects/driftguard.png",
     metrics: [
       "100% Local-First Privacy",
       "<15ms Context Check",
@@ -179,6 +185,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     role: "Lead Frontend Engineer",
     year: "2026",
     client: "Godfrey Moves Ltd",
+    image: "/projects/godfrey-moves.png",
     metrics: [
       "100% Mobile Responsive",
       "Real-Time Route Telemetry",
@@ -214,7 +221,7 @@ export const PROFILE = {
   email: "jeffreyatuluku@gmail.com",
   socials: {
     github: "https://github.com/Jeffrey978",
-    x: "https://x.com/jeffrey978",
+    x: "https://x.com/crypt_jeff1",
     linkedin: "https://linkedin.com/in/jeffreyatuluku",
   },
   introStatement:

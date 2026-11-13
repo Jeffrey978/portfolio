@@ -82,6 +82,15 @@ export default async function CaseStudyPage({
         </div>
       </div>
 
+      {/* Featured Architecture Showcase Image */}
+      <div className="my-10 rounded-3xl overflow-hidden border border-white/10 bg-[#0d0e12] shadow-2xl">
+        <img
+          src={project.image}
+          alt={`${project.title} - Production Architecture Screenshot`}
+          className="w-full h-auto max-h-[580px] object-cover object-top"
+        />
+      </div>
+
       {/* Project Meta Table (Theo Nolan style) */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-b border-white/[0.08] text-xs font-mono">
         <div>

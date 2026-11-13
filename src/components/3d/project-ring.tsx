@@ -151,12 +151,12 @@ export function ProjectRing() {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative w-full h-[460px] sm:h-[520px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+        className="relative w-full h-[500px] sm:h-[550px] flex items-center justify-center cursor-grab active:cursor-grabbing"
         style={{ perspective: "1500px" }}
       >
         {/* The Rotating Cylinder Ring */}
         <div
-          className="relative w-[280px] sm:w-[320px] h-[380px] sm:h-[420px]"
+          className="relative w-[300px] sm:w-[340px] h-[420px] sm:h-[460px]"
           style={{
             transformStyle: "preserve-3d",
             transform: `rotateX(-4deg) rotateY(${rotation}deg)`,
@@ -168,7 +168,7 @@ export function ProjectRing() {
             return (
               <div
                 key={project.slug}
-                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0f0f11]/90 backdrop-blur-xl p-6 flex flex-col justify-between shadow-2xl transition-transform duration-300 hover:scale-[1.03] hover:border-white/30 group"
+                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0c0c0e]/95 backdrop-blur-xl p-5 flex flex-col justify-between shadow-2xl transition-transform duration-300 hover:scale-[1.03] hover:border-white/30 group"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: `rotateY(${cardAngle}deg) translateZ(${radius}px)`,
@@ -177,7 +177,7 @@ export function ProjectRing() {
               >
                 {/* Card Header */}
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-3 pb-3 border-b border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-2 pb-2.5 border-b border-white/5">
                     <span className="text-white font-bold">(0{i + 1})</span>
                     <span className="uppercase tracking-wider text-[10px] text-neutral-400">
                       {project.category}
@@ -185,32 +185,40 @@ export function ProjectRing() {
                     <span className="text-[10px]">{project.year}</span>
                   </div>
 
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                  <h3 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="mt-2 text-xs text-neutral-400 line-clamp-3 leading-relaxed font-sans">
+                  <p className="mt-1 text-xs text-neutral-400 line-clamp-2 leading-relaxed font-sans">
                     {project.tagline}
                   </p>
                 </div>
 
-                {/* Minimal Architectural Visual Slate */}
-                <div className="relative my-4 h-28 sm:h-32 rounded-xl bg-gradient-to-br from-white/[0.04] to-black/60 border border-white/5 p-4 flex flex-col justify-end overflow-hidden">
-                  <div className="absolute top-3 right-3 text-[10px] font-mono text-neutral-500">
-                    STATUS: AUDITED
+                {/* Real Project Screenshot */}
+                <div className="relative my-3 h-36 sm:h-44 rounded-xl border border-white/10 overflow-hidden bg-black/80 group-hover:border-white/20 transition-all">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/10 pointer-events-none" />
+
+                  {/* Badge */}
+                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded text-[9px] font-mono uppercase tracking-wider bg-black/70 backdrop-blur-md border border-white/10 text-neutral-300">
+                    {project.liveUrl ? "LIVE SITE" : "TELEMETRY"}
                   </div>
-                  <div className="space-y-1">
-                    {project.metrics.slice(0, 2).map((m, idx) => (
-                      <div key={idx} className="text-[11px] font-mono text-neutral-300 flex items-center gap-1.5">
-                        <span className="w-1 h-1 rounded-full bg-white/70" />
-                        <span>{m}</span>
-                      </div>
-                    ))}
+
+                  {/* Bottom metrics preview */}
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono text-neutral-300">
+                    <span className="truncate text-white/90 font-medium drop-shadow">
+                      {project.metrics[0]}
+                    </span>
                   </div>
                 </div>
 
                 {/* Card Action Link */}
-                <div className="pt-3 border-t border-white/5 flex items-center justify-between">
+                <div className="pt-2.5 border-t border-white/5 flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 group-hover:text-white transition-colors">
                     EXPLORE CASE STUDY
                   </span>

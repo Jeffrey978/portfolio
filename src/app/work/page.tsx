@@ -88,7 +88,18 @@ export default function WorkPage() {
                 {project.tagline}
               </p>
 
-              <p className="mt-4 text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
+              {/* Real Project Screenshot */}
+              <div className="relative my-5 h-48 sm:h-56 rounded-2xl overflow-hidden border border-white/10 bg-black/60 group-hover:border-white/20 transition-all">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              </div>
+
+              <p className="text-xs sm:text-sm text-neutral-400 font-sans leading-relaxed">
                 {project.overview}
               </p>
 
