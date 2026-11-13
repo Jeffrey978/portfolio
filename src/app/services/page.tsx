@@ -4,19 +4,19 @@ import { ArrowRight, ShieldCheck, Cpu, Code2, CheckCircle2, Clock } from "lucide
 
 export default function ServicesPage() {
   return (
-    <main className="flex-1 w-full py-20 px-4 sm:px-8 max-w-5xl mx-auto">
+    <main className="flex-1 w-full max-w-full overflow-x-hidden py-12 sm:py-20 px-4 sm:px-8 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="pb-14 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400 mb-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="pb-10 sm:pb-14 border-b border-white/[0.08]">
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.08em] sm:tracking-[0.14em] text-neutral-400 mb-4 sm:mb-6">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span>SCOPE OF SERVICES &bull; AUDITS &bull; ARCHITECTURE</span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-[-0.035em] text-white leading-[1.12]">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-snug sm:leading-[1.12] break-words">
           Auditing protocols, investigating decentralized systems, and engineering high-assurance web applications.
         </h1>
 
-        <p className="mt-6 text-base text-neutral-400 font-sans max-w-2xl leading-relaxed">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-base text-neutral-400 font-sans max-w-2xl leading-relaxed">
           Engagements are structured for uncompromising quality. Every line of code is reviewed manually, every threat model is tested with adversarial invariants, and web architectures are built to scale.
         </p>
       </div>

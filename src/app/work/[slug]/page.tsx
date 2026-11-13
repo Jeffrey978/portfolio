@@ -25,12 +25,12 @@ export default async function CaseStudyPage({
   const nextProject = CASE_STUDIES.find((p) => p.slug === project.nextSlug) || CASE_STUDIES[0];
 
   return (
-    <main className="flex-1 w-full py-16 px-4 sm:px-8 max-w-5xl mx-auto">
+    <main className="flex-1 w-full max-w-full overflow-x-hidden py-10 sm:py-16 px-4 sm:px-8 max-w-5xl mx-auto">
       {/* Back to Work Navigation */}
-      <div className="mb-12">
+      <div className="mb-8 sm:mb-12">
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.1em] sm:tracking-[0.14em] text-neutral-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Work Archive</span>
@@ -38,8 +38,8 @@ export default async function CaseStudyPage({
       </div>
 
       {/* Case Study Header */}
-      <div className="pb-10 border-b border-white/[0.08]">
-        <div className="flex items-center gap-3 text-xs font-mono text-neutral-400 mb-4">
+      <div className="pb-8 sm:pb-10 border-b border-white/[0.08]">
+        <div className="flex items-center gap-2 sm:gap-3 text-xs font-mono text-neutral-400 mb-3 sm:mb-4 flex-wrap">
           <span className="text-white font-bold font-mono">CASE STUDY</span>
           <span>&bull;</span>
           <span className="uppercase text-neutral-300">{project.category}</span>
@@ -47,22 +47,22 @@ export default async function CaseStudyPage({
           <span>{project.year}</span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-[-0.035em] leading-[1.08]">
+        <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1] break-words">
           {project.title}
         </h1>
 
-        <p className="mt-4 text-base sm:text-lg font-mono text-neutral-300 max-w-3xl leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-sm sm:text-lg font-mono text-neutral-300 max-w-3xl leading-relaxed">
           {project.tagline}
         </p>
 
         {/* Action Link Pills */}
-        <div className="mt-8 flex flex-wrap items-center gap-3">
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full bg-white text-black font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-neutral-200 transition-colors"
+              className="px-5 py-3 sm:py-2.5 rounded-xl sm:rounded-full bg-white text-black font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-neutral-200 transition-colors"
             >
               <span>Launch Live Site</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -73,7 +73,7 @@ export default async function CaseStudyPage({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2 transition-colors"
+              className="px-5 py-3 sm:py-2.5 rounded-xl sm:rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
             >
               <GithubIcon className="w-3.5 h-3.5" />
               <span>Source Repository</span>
@@ -83,7 +83,7 @@ export default async function CaseStudyPage({
       </div>
 
       {/* Featured Architecture Showcase Image */}
-      <div className="my-10 rounded-3xl overflow-hidden border border-white/10 bg-[#0d0e12] shadow-2xl">
+      <div className="my-8 sm:my-10 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0d0e12] shadow-2xl">
         <img
           src={project.image}
           alt={`${project.title} - Production Architecture Screenshot`}
@@ -92,7 +92,7 @@ export default async function CaseStudyPage({
       </div>
 
       {/* Project Meta Table (Theo Nolan style) */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-b border-white/[0.08] text-xs font-mono">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-6 sm:py-8 border-b border-white/[0.08] text-xs font-mono">
         <div>
           <span className="text-neutral-500 uppercase block mb-1">CLIENT / DOMAIN</span>
           <span className="text-white font-semibold">{project.client}</span>

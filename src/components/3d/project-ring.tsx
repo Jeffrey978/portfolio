@@ -21,10 +21,12 @@ export function ProjectRing() {
   // Responsive radius
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setRadius(280);
+      if (window.innerWidth < 420) {
+        setRadius(225);
+      } else if (window.innerWidth < 640) {
+        setRadius(265);
       } else if (window.innerWidth < 1024) {
-        setRadius(360);
+        setRadius(350);
       } else {
         setRadius(460);
       }
@@ -132,12 +134,12 @@ export function ProjectRing() {
   const anglePerCard = 360 / CASE_STUDIES.length;
 
   return (
-    <div className="relative w-full py-12 flex flex-col items-center select-none overflow-hidden">
+    <div className="relative w-full max-w-full py-8 sm:py-12 flex flex-col items-center select-none overflow-hidden [contain:paint]">
       {/* Micro-Instructions & Active Counter */}
-      <div className="flex items-center justify-between w-full max-w-4xl px-4 sm:px-6 mb-6 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400">
+      <div className="flex items-center justify-between w-full max-w-4xl px-4 sm:px-6 mb-4 sm:mb-6 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400">
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>PROJECT RING // 0{activeCardIndex + 1} OF 0{CASE_STUDIES.length}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="text-[11px] sm:text-xs">PROJECT RING // 0{activeCardIndex + 1} OF 0{CASE_STUDIES.length}</span>
         </div>
         <div className="hidden sm:flex items-center gap-2 text-neutral-500">
           <span>[ DRAG OR USE CONTROLS ]</span>
@@ -151,12 +153,12 @@ export function ProjectRing() {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="relative w-full h-[500px] sm:h-[550px] flex items-center justify-center cursor-grab active:cursor-grabbing"
-        style={{ perspective: "1500px" }}
+        className="relative w-full max-w-full h-[430px] sm:h-[500px] md:h-[550px] flex items-center justify-center cursor-grab active:cursor-grabbing overflow-hidden [contain:paint]"
+        style={{ perspective: "1200px" }}
       >
         {/* The Rotating Cylinder Ring */}
         <div
-          className="relative w-[300px] sm:w-[340px] h-[420px] sm:h-[460px]"
+          className="relative w-[260px] sm:w-[310px] md:w-[340px] h-[390px] sm:h-[430px] md:h-[460px]"
           style={{
             transformStyle: "preserve-3d",
             transform: `rotateX(-4deg) rotateY(${rotation}deg)`,
@@ -168,7 +170,7 @@ export function ProjectRing() {
             return (
               <div
                 key={project.slug}
-                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0c0c0e]/95 backdrop-blur-xl p-5 flex flex-col justify-between shadow-2xl transition-transform duration-300 hover:scale-[1.03] hover:border-white/30 group"
+                className="absolute inset-0 rounded-2xl border border-white/10 bg-[#0c0c0e]/95 backdrop-blur-xl p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-transform duration-300 hover:scale-[1.02] hover:border-white/30 group"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: `rotateY(${cardAngle}deg) translateZ(${radius}px)`,
@@ -177,25 +179,25 @@ export function ProjectRing() {
               >
                 {/* Card Header */}
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-2 pb-2.5 border-b border-white/5">
+                  <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono text-neutral-400 mb-2 pb-2 border-b border-white/5">
                     <span className="text-white font-bold">(0{i + 1})</span>
-                    <span className="uppercase tracking-wider text-[10px] text-neutral-400">
+                    <span className="uppercase tracking-wider text-[9px] sm:text-[10px] text-neutral-400">
                       {project.category}
                     </span>
-                    <span className="text-[10px]">{project.year}</span>
+                    <span className="text-[9px] sm:text-[10px]">{project.year}</span>
                   </div>
 
-                  <h3 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
+                  <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-white tracking-tight group-hover:text-neutral-100 transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="mt-1 text-xs text-neutral-400 line-clamp-2 leading-relaxed font-sans">
+                  <p className="mt-1 text-[11px] sm:text-xs text-neutral-400 line-clamp-2 leading-relaxed font-sans">
                     {project.tagline}
                   </p>
                 </div>
 
                 {/* Real Project Screenshot */}
-                <div className="relative my-3 h-36 sm:h-44 rounded-xl border border-white/10 overflow-hidden bg-black/80 group-hover:border-white/20 transition-all">
+                <div className="relative my-2 sm:my-3 h-32 sm:h-38 md:h-44 rounded-xl border border-white/10 overflow-hidden bg-black/80 group-hover:border-white/20 transition-all">
                   <img
                     src={project.image}
                     alt={project.title}

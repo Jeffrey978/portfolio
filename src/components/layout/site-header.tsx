@@ -26,17 +26,17 @@ export function SiteHeader() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/[0.08] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-6">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/85 backdrop-blur-md border-b border-white/[0.08] transition-colors w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-6 w-full">
         {/* Left: Name & Role Title */}
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0 shrink">
           <Link
             href="/"
             onClick={() => soundFX.playClick()}
             data-cursor="HOME"
             className="flex flex-col group shrink-0"
           >
-            <span className="font-display text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-neutral-300 transition-colors">
+            <span className="font-display text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-neutral-300 transition-colors truncate">
               {PROFILE.fullName}
             </span>
             <span className="text-[11px] font-mono text-neutral-400 truncate hidden md:inline">

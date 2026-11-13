@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { CustomCursor } from "@/components/ui/cursor";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-display",
@@ -64,11 +70,11 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${inter.variable} ${jetBrainsMono.variable} dark antialiased scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#0a0a0a] text-[#ffffff] font-sans relative selection:bg-white selection:text-black">
+      <body className="min-h-screen bg-[#0a0a0a] text-[#ffffff] font-sans relative selection:bg-white selection:text-black overflow-x-hidden w-full max-w-full">
         <SmoothScrollProvider>
           <CustomCursor />
           <SiteHeader />
-          <div className="pt-16 sm:pt-20 flex-1 flex flex-col min-h-[calc(100vh-5rem)]">
+          <div className="pt-16 sm:pt-20 flex-1 flex flex-col min-h-[calc(100vh-5rem)] w-full max-w-full overflow-x-hidden">
             {children}
           </div>
           <SiteFooter />

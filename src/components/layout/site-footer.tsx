@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="w-full border-t border-white/[0.08] bg-[#0a0a0a] py-16 px-4 sm:px-8 text-neutral-400">
+    <footer className="w-full max-w-full overflow-x-hidden border-t border-white/[0.08] bg-[#0a0a0a] py-12 sm:py-16 px-4 sm:px-8 text-neutral-400">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* Main Footer Row */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start justify-between">

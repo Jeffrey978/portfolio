@@ -84,25 +84,25 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="flex-1 w-full py-20 px-4 sm:px-8 max-w-5xl mx-auto">
+    <main className="flex-1 w-full max-w-full overflow-x-hidden py-12 sm:py-20 px-4 sm:px-8 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="pb-14 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400 mb-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="pb-10 sm:pb-14 border-b border-white/[0.08]">
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.08em] sm:tracking-[0.14em] text-neutral-400 mb-4 sm:mb-6">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span>CONTACT &bull; INQUIRIES &bull; AUDIT SCOPING</span>
         </div>
 
-        <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-[-0.035em] text-white leading-[1.12]">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-snug sm:leading-[1.12] break-words">
           Got a protocol to audit or a flagship application to build? Write to me.
         </h1>
 
-        <p className="mt-4 text-base text-neutral-400 font-sans max-w-xl">
+        <p className="mt-3 sm:mt-4 text-sm sm:text-base text-neutral-400 font-sans max-w-xl leading-relaxed">
           I read and respond to every message personally within 24 hours.
         </p>
       </div>
 
       {/* Main 2-Column Content (Theo Nolan Contact Layout) */}
-      <div className="py-16 grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+      <div className="py-10 sm:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Left Column: Direct Inquiries, Studio Info & Availability */}
         <div className="md:col-span-5 space-y-10">
           {/* Big Email Card */}
@@ -190,7 +190,7 @@ export default function ContactPage() {
 
         {/* Right Column: Clean Editorial Inquiry Form */}
         <div className="md:col-span-7">
-          <div className="p-8 sm:p-10 rounded-3xl border border-white/[0.08] bg-[#0e0e10]/80 backdrop-blur-xl">
+          <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-[#0e0e10]/80 backdrop-blur-xl">
             {submitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">

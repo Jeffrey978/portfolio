@@ -5,15 +5,15 @@ import { GithubIcon } from "@/components/ui/icons";
 
 export default function AboutPage() {
   return (
-    <main className="flex-1 w-full py-20 px-4 sm:px-8 max-w-5xl mx-auto">
+    <main className="flex-1 w-full max-w-full overflow-x-hidden py-12 sm:py-20 px-4 sm:px-8 max-w-5xl mx-auto">
       {/* Editorial Intro Headline */}
-      <div className="pb-14 border-b border-white/[0.08]">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400 mb-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="pb-10 sm:pb-14 border-b border-white/[0.08]">
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.08em] sm:tracking-[0.14em] text-neutral-400 mb-4 sm:mb-6">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span>BIOGRAPHY &bull; RESEARCH &bull; BACKGROUND</span>
         </div>
 
-        <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold tracking-[-0.03em] text-white leading-[1.14]">
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-snug sm:leading-[1.14] break-words">
           {PROFILE.aboutStatement}
         </h1>
       </div>

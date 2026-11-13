@@ -25,22 +25,22 @@ export default function WorkPage() {
     : CASE_STUDIES.filter((p) => p.category.toUpperCase().includes(activeCategory));
 
   return (
-    <main className="flex-1 w-full py-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <main className="flex-1 w-full max-w-full overflow-x-hidden py-12 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
-      <div className="pb-12 border-b border-white/[0.08] mb-12">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.14em] text-neutral-400 mb-4">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="pb-10 sm:pb-12 border-b border-white/[0.08] mb-8 sm:mb-12">
+        <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.08em] sm:tracking-[0.14em] text-neutral-400 mb-3 sm:mb-4">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
           <span>INDEX OF PRODUCTION SYSTEMS &bull; 06 ARCHITECTURES</span>
         </div>
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-[-0.035em]">
-          SELECTED WORK <span className="text-neutral-500 font-normal">(2022&mdash;2026)</span>
+        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight break-words">
+          SELECTED WORK <span className="text-neutral-500 font-normal text-xl sm:text-4xl md:text-5xl block sm:inline mt-1 sm:mt-0">(2022&mdash;2026)</span>
         </h1>
-        <p className="mt-4 text-sm sm:text-base text-neutral-400 font-sans max-w-2xl leading-relaxed">
-          Production systems, protocol audits, and decentralized infrastructure designed and engineered from start to finish by Jeffrey.
+        <p className="mt-3 sm:mt-4 text-xs sm:text-base text-neutral-400 font-sans max-w-2xl leading-relaxed">
+          Production systems, protocol audits, and decentralized infrastructure designed and engineered from start to finish by Atuluku Jeffrey.
         </p>
 
         {/* Category Filter Pills */}
-        <div className="mt-8 flex flex-wrap items-center gap-2">
+        <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-1.5 sm:gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -49,7 +49,7 @@ export default function WorkPage() {
                 soundFX.playClick();
               }}
               data-cursor={cat}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all ${
+              className={`px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-mono tracking-wider uppercase transition-all ${
                 activeCategory === cat
                   ? "bg-white text-black font-bold shadow-[0_0_15px_rgba(255,255,255,0.4)]"
                   : "bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white border border-white/5"
@@ -62,11 +62,11 @@ export default function WorkPage() {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {filteredProjects.map((project, i) => (
           <div
             key={project.slug}
-            className="rounded-3xl border border-white/[0.08] bg-[#0e0e10]/80 backdrop-blur-xl p-8 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-all duration-300 group"
+            className="rounded-3xl border border-white/[0.08] bg-[#0e0e10]/80 backdrop-blur-xl p-5 sm:p-10 flex flex-col justify-between hover:border-white/25 transition-all duration-300 group"
           >
             {/* Top Meta */}
             <div>
