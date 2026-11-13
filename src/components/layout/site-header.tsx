@@ -10,27 +10,8 @@ import { Volume2, VolumeX, Menu, X, ArrowUpRight } from "lucide-react";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [timeStr, setTimeStr] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [muted, setMuted] = useState(false);
-
-  // Live Port Harcourt Time (WAT / UTC+1)
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Africa/Lagos",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      setTimeStr(new Intl.DateTimeFormat("en-GB", options).format(now));
-    };
-    updateTime();
-    const timer = setInterval(updateTime, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const toggleSound = () => {
     const nextMuted = soundFX.toggleMute();
@@ -62,14 +43,6 @@ export function SiteHeader() {
               Web3 Researcher &amp; Security Auditor
             </span>
           </Link>
-
-          {/* Location & Time Indicator */}
-          <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-white/10 text-xs font-mono text-neutral-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{PROFILE.location}</span>
-            <span className="text-white/20">&bull;</span>
-            <span className="text-neutral-300">{timeStr || "00:00:00"} WAT</span>
-          </div>
         </div>
 
         {/* Center/Right: Navigation Links */}
@@ -100,7 +73,7 @@ export function SiteHeader() {
         {/* Right: Socials, Sound Toggle & Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Social Micro-Pills */}
-          <div className="hidden sm:flex items-center gap-1.5 pr-2 border-r border-white/10 text-[11px] font-mono">
+          <div className="hidden sm:flex items-center gap-2 pr-2 border-r border-white/10 text-[11px] font-mono">
             <a
               href={PROFILE.socials.x}
               target="_blank"
@@ -114,19 +87,19 @@ export function SiteHeader() {
               href={PROFILE.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="GH"
+              data-cursor="GITHUB"
               className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/15 text-neutral-300 hover:text-white transition-colors"
             >
-              GH
+              GitHub
             </a>
             <a
               href={PROFILE.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              data-cursor="LI"
+              data-cursor="LINKEDIN"
               className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/15 text-neutral-300 hover:text-white transition-colors"
             >
-              LI
+              LinkedIn
             </a>
           </div>
 
@@ -156,13 +129,6 @@ export function SiteHeader() {
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-white/10 bg-[#0a0a0a]/95 backdrop-blur-2xl px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top-2 duration-200">
-          <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 pb-4 border-b border-white/5">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{PROFILE.location}</span>
-            <span>&bull;</span>
-            <span className="text-white">{timeStr} WAT</span>
-          </div>
-
           <nav className="flex flex-col gap-4 text-lg font-display font-semibold">
             {navLinks.map((link) => (
               <Link

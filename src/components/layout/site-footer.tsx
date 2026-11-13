@@ -82,9 +82,30 @@ export function SiteFooter() {
             &copy; 2026 {PROFILE.fullName}. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <span>DESIGN MOTIF: THEO NOLAN REPLICA</span>
-            <span>NEXT.JS 16 &bull; APP ROUTER</span>
-            <span>PORT HARCOURT &bull; WAT</span>
+            <a
+              href={PROFILE.socials.x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              X
+            </a>
+            <a
+              href={PROFILE.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href={PROFILE.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </div>
