@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <main className="flex-1 flex flex-col justify-between w-full max-w-full overflow-x-hidden min-h-[calc(100vh-5rem)]">
       {/* 1. Calm Editorial Intro Statement (Theo Nolan style) */}
-      <section className="pt-8 sm:pt-16 pb-4 px-4 sm:px-8 w-full max-w-full">
+      <section className="pt-3 sm:pt-8 pb-2 sm:pb-3 px-4 sm:px-8 w-full max-w-full">
         <div className="max-w-4xl mx-auto flex flex-col items-start w-full">
           {/* Subtle Live Status Pill */}
           <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-mono text-neutral-400 mb-4 sm:mb-5 max-w-full">
