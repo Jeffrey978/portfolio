@@ -4,7 +4,7 @@ import { useState } from "react";
 import confetti from "canvas-confetti";
 import { soundFX } from "@/components/ui/sound-effects";
 import { PROFILE } from "@/lib/data";
-import { Terminal, Send, Copy, Check, Mail, ArrowUpRight, Sparkles } from "lucide-react";
+import { Terminal, Send, Copy, Check, ArrowUpRight, Sparkles } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 
 export function ContactSection() {
@@ -44,26 +44,26 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-28 px-4 sm:px-8 relative bg-neutral-950/70 border-t border-white/10">
+    <section id="contact" className="py-28 px-4 sm:px-8 relative bg-neutral-950/70 border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Inquiries & Bio */}
+          {/* Left Column */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div className="text-xs font-mono uppercase tracking-widest text-cyan-400 flex items-center gap-2">
               <Terminal className="w-4 h-4" />
-              <span>// INITIATE TRANSMISSION</span>
+              <span>// DIRECT CONTACT &amp; INQUIRIES</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Let&apos;s engineer something unforgettable.
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Let&apos;s build your next flagship product.
             </h2>
 
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Available for full-stack engineering, interactive 3D WebGL experiences, Next.js architecture, and high-impact software design.
+            <p className="text-neutral-400 text-sm leading-relaxed font-sans">
+              Available for full-stack system architecture, marketplace escrow development, interactive 3D WebGL experiences, and senior engineering contracts.
             </p>
 
-            {/* Quick Action Email Pill */}
-            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-between gap-4">
+            {/* Email Pill */}
+            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-4">
               <div>
                 <div className="text-[11px] font-mono text-neutral-400 uppercase">Direct Email</div>
                 <div className="text-sm font-mono text-white font-semibold">jeffreyatuluku@gmail.com</div>
@@ -95,17 +95,17 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Terminal-style Transmission Form */}
+          {/* Right Column: Terminal Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-white/10 bg-black/80 backdrop-blur-xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            <div className="rounded-3xl border border-white/[0.08] bg-black/80 backdrop-blur-xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10 text-xs font-mono text-neutral-400">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
                   <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
                   <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
-                  <span className="ml-2">terminal@jeffrey-core:~$ send-dispatch</span>
+                  <span className="ml-2">terminal@jeffrey:~$ send-message</span>
                 </div>
-                <span>PORT 443 // TLS</span>
+                <span>DIRECT ENCRYPTION</span>
               </div>
 
               {sent ? (
@@ -113,15 +113,15 @@ export function ContactSection() {
                   <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                     <Sparkles className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-white">Transmission Delivered</h3>
-                  <p className="text-neutral-400 text-sm max-w-sm">
-                    Thank you, {name || "friend"}! Your message was received. I will reply via {email || "your inbox"} shortly.
+                  <h3 className="font-display text-xl font-bold text-white">Message Transmitted</h3>
+                  <p className="text-neutral-400 text-sm max-w-sm font-sans">
+                    Thank you, {name || "friend"}! Your message was received. I will reply to {email || "your email"} promptly.
                   </p>
                   <button
                     onClick={() => setSent(false)}
                     className="mt-4 px-5 py-2 rounded-xl bg-white/10 text-xs font-mono text-white hover:bg-white/20 transition-colors"
                   >
-                    Send Another Transmission
+                    Send Another Message
                   </button>
                 </div>
               ) : (
@@ -149,7 +149,7 @@ export function ContactSection() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="alex@enterprise.com"
+                        placeholder="alex@company.com"
                         className="w-full px-4 py-3 rounded-xl bg-neutral-900/90 border border-white/10 text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-cyan-500 transition-colors font-sans"
                       />
                     </div>
@@ -157,25 +157,25 @@ export function ContactSection() {
 
                   <div>
                     <label className="block text-xs font-mono text-neutral-400 uppercase mb-2">
-                      // MISSION BRIEF / MESSAGE
+                      // PROJECT SCOPE / MESSAGE
                     </label>
                     <textarea
                       required
                       rows={4}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Tell me about your vision, timeline, and architectural requirements..."
+                      placeholder="Tell me about your product requirements, architectural scope, and desired timeline..."
                       className="w-full px-4 py-3 rounded-xl bg-neutral-900/90 border border-white/10 text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-cyan-500 transition-colors font-sans resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    data-cursor="DISPATCH"
+                    data-cursor="TRANSMIT"
                     className="w-full py-4 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Transmit Dispatch</span>
+                    <span>Send Inquiry</span>
                   </button>
                 </form>
               )}
@@ -183,15 +183,15 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* Footer Credit & Telemetry */}
-        <div className="mt-24 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
+        {/* Footer */}
+        <div className="mt-24 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
           <div>
             © 2026 {PROFILE.name} • All Rights Reserved.
           </div>
           <div className="flex items-center gap-6">
-            <span>BUILT WITH NEXT.JS 16 &amp; THREE.JS</span>
-            <span>BLENDER PBR WORKFLOW</span>
-            <span>GSAP ACCELERATED</span>
+            <span>NEXT.JS 16 &bull; APP ROUTER</span>
+            <span>THREE.JS &bull; AMBIENT GL</span>
+            <span>LENIS &bull; GSAP</span>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { soundFX } from "@/components/ui/sound-effects";
 import { TECH_STACK, PROFILE } from "@/lib/data";
-import { Clock, Shield, Sparkles, Layers, Cpu, Code2, Globe, CheckCircle } from "lucide-react";
+import { Clock, Shield, Layers, Cpu, Code2, CheckCircle2 } from "lucide-react";
 
 export function BentoAboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -14,7 +14,6 @@ export function BentoAboutSection() {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      // Port Harcourt is UTC+1 (WAT)
       const options: Intl.DateTimeFormatOptions = {
         timeZone: "Africa/Lagos",
         hour: "2-digit",
@@ -39,10 +38,10 @@ export function BentoAboutSection() {
           trigger: sectionRef.current,
           start: "top 80%",
         },
-        y: 40,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.7,
+        stagger: 0.08,
         ease: "power2.out",
       });
     }, sectionRef);
@@ -51,120 +50,120 @@ export function BentoAboutSection() {
   }, []);
 
   return (
-    <section id="architecture" ref={sectionRef} className="py-28 px-4 sm:px-8 relative">
+    <section id="architecture" ref={sectionRef} className="py-28 px-4 sm:px-8 relative border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/10 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/[0.08] pb-8">
           <div>
             <div className="text-xs font-mono uppercase tracking-widest text-cyan-400 flex items-center gap-2 mb-3">
               <Layers className="w-4 h-4" />
-              <span>// SYSTEM ARCHITECTURE &amp; CAPABILITIES</span>
+              <span>// ENGINEERING DISCIPLINES &amp; METRICS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Engineering Matrix
+            <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              Architecture Matrix
             </h2>
           </div>
-          <p className="text-neutral-400 text-sm max-w-md font-mono">
-            How I architect software: high-assurance data structures, spatial 3D visualization, and ultra-performant client runtimes.
+          <p className="text-neutral-400 text-sm max-w-md font-sans leading-relaxed">
+            Architectural standards applied across all production systems: atomic escrow guarantees, local-first data privacy, and 60 FPS spatial interactions.
           </p>
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Card 1: Core Engineering Philosophy (Span 2 cols) */}
-          <div className="bento-card md:col-span-2 rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
+          {/* Card 1: Core Tenets (Span 2 cols) */}
+          <div className="bento-card md:col-span-2 rounded-3xl border border-white/[0.08] bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
             <div>
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400 mb-4">
                 <Shield className="w-4 h-4" />
-                <span>ARCHITECTURAL TENETS</span>
+                <span>CORE PRINCIPLES</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Zero Compromise on Trust, Privacy &amp; Performance
+              <h3 className="font-display text-2xl font-bold text-white mb-3">
+                Trust-First and Local-First Engineering
               </h3>
-              <p className="text-sm text-neutral-400 leading-relaxed mb-6">
-                Whether deploying multi-party escrow smart state machines (ServHive) or local-first browser interception workers that safeguard user privacy (DriftGuard), my systems are architected from day one to eliminate failure modes.
+              <p className="text-sm text-neutral-400 leading-relaxed font-sans mb-6">
+                Software must eliminate risk for the end-user. In ServHive, that means locked escrow funds and verifiable job milestones. In DriftGuard, that means 100% on-device storage so personal browsing data never touches a remote server.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">
               <div className="flex items-start gap-2.5">
-                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <div className="text-xs">
-                  <div className="font-semibold text-white">Trust-First Systems</div>
-                  <div className="text-neutral-400">Escrow milestones &amp; atomic state</div>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div className="text-xs font-sans">
+                  <div className="font-semibold text-white">Escrow State Machines</div>
+                  <div className="text-neutral-400">Zero disputes &amp; atomic payouts</div>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
-                <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <div className="text-xs">
-                  <div className="font-semibold text-white">Local-First Storage</div>
-                  <div className="text-neutral-400">Zero cloud leak data integrity</div>
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                <div className="text-xs font-sans">
+                  <div className="font-semibold text-white">Zero-Cloud Privacy</div>
+                  <div className="text-neutral-400">Local-first browser extensions</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Card 2: Port Harcourt Timezone & Remote Readiness */}
-          <div className="bento-card rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
+          {/* Card 2: Port Harcourt Timezone */}
+          <div className="bento-card rounded-3xl border border-white/[0.08] bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
             <div>
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-400 mb-4">
                 <Clock className="w-4 h-4" />
-                <span>LOCAL TIME &amp; SYNC</span>
+                <span>TIMEZONE &amp; SYNC</span>
               </div>
               <div className="text-3xl font-mono font-bold text-white mb-2">
                 {timeString || "00:00:00"}
               </div>
               <div className="text-xs font-mono text-neutral-400">
-                Port Harcourt, NG (WAT / UTC+1)
+                Port Harcourt, Nigeria (WAT / UTC+1)
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/10">
+            <div className="pt-6 border-t border-white/[0.08]">
               <div className="flex items-center gap-2 text-xs text-emerald-400 font-mono mb-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>GLOBAL ASYNC READY</span>
               </div>
-              <p className="text-xs text-neutral-400">
-                Seamless overlap with European, UK, and US East Coast working hours.
+              <p className="text-xs text-neutral-400 font-sans">
+                Full workday overlap with Europe, the UK, and East Coast US teams.
               </p>
             </div>
           </div>
 
-          {/* Card 3: Code Health & Uptime */}
-          <div className="bento-card rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
+          {/* Card 3: Uptime & Tech Stack */}
+          <div className="bento-card rounded-3xl border border-white/[0.08] bg-neutral-900/60 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-cyan-500/30 transition-colors">
             <div>
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-400 mb-4">
                 <Cpu className="w-4 h-4" />
-                <span>TELEMETRY</span>
+                <span>RELIABILITY</span>
               </div>
               <div className="text-3xl font-mono font-bold text-white mb-1">
                 99.98%
               </div>
               <div className="text-xs font-mono text-neutral-400">
-                Uptime Across Production Services
+                Production System Uptime
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/10">
+            <div className="pt-6 border-t border-white/[0.08]">
               <div className="flex items-center justify-between text-xs font-mono text-neutral-300 mb-2">
                 <span>Next.js 16 App Router</span>
-                <span className="text-cyan-400">v16.4</span>
+                <span className="text-cyan-400">Production</span>
               </div>
               <div className="w-full bg-neutral-800 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-400 to-indigo-500 h-full w-[96%]" />
+                <div className="bg-gradient-to-r from-cyan-400 to-indigo-500 h-full w-[98%]" />
               </div>
             </div>
           </div>
 
-          {/* Card 4: Comprehensive Tech Stack Arsenal (Span full 4 cols) */}
-          <div className="bento-card md:col-span-3 lg:col-span-4 rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur-xl p-8 hover:border-cyan-500/30 transition-colors">
+          {/* Card 4: Full Stack Chips (Span 4 cols) */}
+          <div className="bento-card md:col-span-3 lg:col-span-4 rounded-3xl border border-white/[0.08] bg-neutral-900/60 backdrop-blur-xl p-8 hover:border-cyan-500/30 transition-colors">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
                 <Code2 className="w-4 h-4" />
-                <span>STACK ARSENAL &amp; PROFICIENCIES</span>
+                <span>PRODUCTION TECH STACK</span>
               </div>
               <span className="text-xs font-mono text-neutral-400">
-                Interactive skill matrix
+                Hover to test interactive audio haptics
               </span>
             </div>
 

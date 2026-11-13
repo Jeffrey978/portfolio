@@ -1,41 +1,51 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { CustomCursor } from "@/components/ui/cursor";
 import { Navbar } from "@/components/sections/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Jeffrey Atuluku // Creative Technologist & 3D Spatial Engineer",
+  title: "Jeffrey Atuluku // ServHive & Flagship Engineering Systems",
   description:
-    "Award-caliber 3D portfolio of Jeffrey Atuluku (@jeffrey978). Creator of ServHive, DriftGuard, Godfrey Moves Transport, and Subnet Scout. Specializing in Next.js 16, React Three Fiber, WebGL, GSAP, and Blender PBR pipelines.",
+    "Engineering high-assurance marketplace architectures, local-first applications, and spatial 3D WebGL interfaces. Creator of ServHive (verified artisan escrow platform in Port Harcourt), DriftGuard, Godfrey Moves Transport, and Subnet Scout.",
   keywords: [
-    "Jeffrey Atuluku",
-    "Creative Technologist",
-    "Three.js Portfolio",
-    "React Three Fiber",
-    "Next.js 16",
-    "GSAP ScrollTrigger",
-    "Blender 3D",
     "ServHive",
+    "Escrow Marketplace",
+    "Jeffrey Atuluku",
+    "Port Harcourt",
+    "Three.js",
+    "Next.js 16",
+    "GSAP",
     "DriftGuard",
     "Subnet Scout",
     "Godfrey Moves Transport"
   ],
   authors: [{ name: "Jeffrey Atuluku", url: "https://github.com/Jeffrey978" }],
   openGraph: {
-    title: "Jeffrey Atuluku // 3D Spatial Engineer & Creative Technologist",
-    description: "Modern 3D portfolio featuring interactive WebGL, Blender pipelines, and proof-of-work systems.",
+    title: "Jeffrey Atuluku // ServHive & Flagship Engineering Systems",
+    description: "Verified artisan escrow marketplace & high-assurance spatial web architectures.",
     type: "website",
   },
 };
@@ -48,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark antialiased scroll-smooth`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${jetBrainsMono.variable} dark antialiased scroll-smooth`}
     >
       <body className="min-h-screen bg-[#070709] text-[#f4f4f5] font-sans relative selection:bg-cyan-400 selection:text-black">
         <SmoothScrollProvider>
