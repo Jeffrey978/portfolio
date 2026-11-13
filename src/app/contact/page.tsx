@@ -14,6 +14,8 @@ export default function ContactPage() {
   const [projectType, setProjectType] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PROFILE.email);
@@ -30,18 +32,55 @@ export default function ContactPage() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage(null);
     soundFX.playSwitch();
 
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.7 },
-      colors: ["#ffffff", "#e5482d", "#10b981", "#aaaaaa"],
-    });
+    try {
+      const endpoint =
+        process.env.NEXT_PUBLIC_FORM_ENDPOINT ||
+        `https://formsubmit.co/ajax/${PROFILE.email}`;
 
-    setSubmitted(true);
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          service: projectType || "General Inquiry",
+          message,
+          _subject: `New Portfolio Inquiry from ${name} [${projectType || "General"}]`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Dispatch transmission failed.");
+      }
+
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.7 },
+        colors: ["#ffffff", "#e5482d", "#10b981", "#aaaaaa"],
+      });
+
+      setSubmitted(true);
+    } catch (err: unknown) {
+      console.error(err);
+      // Fallback: If external endpoint is unreachable, still inform the user and provide instant direct email option
+      setErrorMessage(
+        "Network dispatch was interrupted. You can click 'Direct Email' on the left to reach me immediately."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,15 +193,23 @@ export default function ContactPage() {
           <div className="p-8 sm:p-10 rounded-3xl border border-white/[0.08] bg-[#0e0e10]/80 backdrop-blur-xl">
             {submitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white">
+                <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white">Message Transmitted</h3>
-                <p className="text-sm text-neutral-400 font-sans max-w-sm">
-                  Thank you, {name || "friend"}. Your dispatch was received. I will reply to {email} within 24 hours.
+                <p className="text-sm text-neutral-300 font-sans max-w-md leading-relaxed">
+                  Thank you, <span className="text-white font-semibold">{name || "friend"}</span>. Your inquiry has been dispatched directly to Atuluku Jeffrey at{" "}
+                  <span className="text-white font-mono">{PROFILE.email}</span>. A reply will be sent to{" "}
+                  <span className="text-white font-mono">{email}</span> within 24 hours.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => {
+                    setName("");
+                    setEmail("");
+                    setProjectType("");
+                    setMessage("");
+                    setSubmitted(false);
+                  }}
                   className="mt-4 px-6 py-2.5 rounded-full bg-white/10 text-xs font-mono text-white hover:bg-white/20 transition-colors"
                 >
                   Send Another Message
@@ -170,6 +217,12 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-mono">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-xs font-mono uppercase tracking-wider text-neutral-400 mb-2">
                     // YOUR NAME
@@ -231,11 +284,12 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   data-cursor="DISPATCH"
-                  className="w-full py-4 rounded-xl bg-white hover:bg-neutral-200 text-black font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+                  className="w-full py-4 rounded-xl bg-white hover:bg-neutral-200 disabled:bg-neutral-600 disabled:cursor-not-allowed text-black font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(255,255,255,0.25)]"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Transmit Inquiry</span>
+                  <Send className={`w-3.5 h-3.5 ${isSubmitting ? "animate-pulse" : ""}`} />
+                  <span>{isSubmitting ? "Transmitting Dispatch..." : "Transmit Inquiry"}</span>
                 </button>
               </form>
             )}
