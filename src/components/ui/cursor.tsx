@@ -11,7 +11,6 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show on devices with mouse/pointer (not touch)
     if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
       return;
     }
@@ -23,7 +22,7 @@ export function CustomCursor() {
 
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const mouse = { x: pos.x, y: pos.y };
-    const speed = 0.2;
+    const speed = 0.22;
 
     const xSet = gsap.quickSetter(cursor, "x", "px");
     const ySet = gsap.quickSetter(cursor, "y", "px");
@@ -45,7 +44,6 @@ export function CustomCursor() {
 
     gsap.ticker.add(ticker);
 
-    // Watch for elements requesting custom cursor states
     const handleMouseOver = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("[data-cursor]");
       if (target) {
@@ -78,19 +76,19 @@ export function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className={`pointer-events-none fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50 rounded-full flex items-center justify-center transition-[width,height,background-color,border-color] duration-200 ease-out ${
+      className={`pointer-events-none fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50 rounded-full flex items-center justify-center transition-[width,height,background-color,border-color] duration-150 ease-out ${
         isHovered
           ? cursorText
-            ? "w-20 h-20 bg-cyan-400 text-black border border-white/20 backdrop-blur-md shadow-[0_0_25px_rgba(6,182,212,0.6)]"
-            : "w-12 h-12 bg-white/10 border border-cyan-400/80 backdrop-blur-sm"
-          : "w-3.5 h-3.5 bg-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.8)]"
+            ? "w-20 h-20 bg-white text-black border border-white/20 shadow-xl"
+            : "w-10 h-10 bg-white/10 border border-white/60 backdrop-blur-xs"
+          : "w-3 h-3 bg-white"
       }`}
       style={{ willChange: "transform" }}
     >
       {cursorText && (
         <span
           ref={textRef}
-          className="text-[11px] font-mono font-bold uppercase tracking-wider text-black select-none"
+          className="text-[10px] font-mono font-bold uppercase tracking-widest text-black select-none"
         >
           {cursorText}
         </span>

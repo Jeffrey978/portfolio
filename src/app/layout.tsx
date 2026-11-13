@@ -3,7 +3,8 @@ import { Plus_Jakarta_Sans, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { CustomCursor } from "@/components/ui/cursor";
-import { Navbar } from "@/components/sections/navbar";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-display",
@@ -27,25 +28,27 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeffrey Atuluku // ServHive & Flagship Engineering Systems",
+  title: "Jeffrey // Web3 Researcher, Security Auditor & Full-Stack Engineer",
   description:
-    "Engineering high-assurance marketplace architectures, local-first applications, and spatial 3D WebGL interfaces. Creator of ServHive (verified artisan escrow platform in Port Harcourt), DriftGuard, Godfrey Moves Transport, and Subnet Scout.",
+    "Portfolio of Jeffrey (B.Sc. Computer Science) — Independent Web3 researcher, smart contract security auditor, and full-stack web developer based in Port Harcourt, Nigeria. Creator of PulseSwitch, ServHive, and decentralized AI automation engines.",
   keywords: [
-    "ServHive",
-    "Escrow Marketplace",
+    "Jeffrey",
     "Jeffrey Atuluku",
+    "Smart Contract Security Auditor",
+    "Web3 Researcher",
+    "Full-Stack Web Developer",
+    "PulseSwitch",
+    "ServHive",
     "Port Harcourt",
-    "Three.js",
-    "Next.js 16",
-    "GSAP",
-    "DriftGuard",
-    "Subnet Scout",
-    "Godfrey Moves Transport"
+    "Bittensor",
+    "Solidity",
+    "Foundry",
+    "Next.js 16"
   ],
   authors: [{ name: "Jeffrey Atuluku", url: "https://github.com/Jeffrey978" }],
   openGraph: {
-    title: "Jeffrey Atuluku // ServHive & Flagship Engineering Systems",
-    description: "Verified artisan escrow marketplace & high-assurance spatial web architectures.",
+    title: "Jeffrey // Web3 Researcher & Smart Contract Security Auditor",
+    description: "High-assurance protocol audits, Web3 research, and full-stack software architectures.",
     type: "website",
   },
 };
@@ -60,13 +63,14 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${inter.variable} ${jetBrainsMono.variable} dark antialiased scroll-smooth`}
     >
-      <body className="min-h-screen bg-[#070709] text-[#f4f4f5] font-sans relative selection:bg-cyan-400 selection:text-black">
+      <body className="min-h-screen bg-[#0a0a0a] text-[#ffffff] font-sans relative selection:bg-white selection:text-black">
         <SmoothScrollProvider>
           <CustomCursor />
-          <Navbar />
-          <div className="cyber-grid relative min-h-screen flex flex-col">
+          <SiteHeader />
+          <div className="pt-16 sm:pt-20 flex-1 flex flex-col min-h-[calc(100vh-5rem)]">
             {children}
           </div>
+          <SiteFooter />
         </SmoothScrollProvider>
       </body>
     </html>
