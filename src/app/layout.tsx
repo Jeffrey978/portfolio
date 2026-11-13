@@ -28,15 +28,16 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeffrey // Web3 Researcher, Security Auditor & Full-Stack Engineer",
+  title: "Atuluku Jeffrey // Web3 Researcher & Full-Stack Builder",
   description:
-    "Portfolio of Jeffrey (B.Sc. Computer Science) — Independent Web3 researcher, smart contract security auditor, and full-stack web developer based in Port Harcourt, Nigeria. Creator of PulseSwitch, ServHive, and decentralized AI automation engines.",
+    "Portfolio of Atuluku Jeffrey (B.Sc. Computer Science) — Independent Web3 researcher and full-stack web builder based in Port Harcourt, Nigeria. Creator of PulseSwitch, ServHive, and decentralized AI automation engines.",
   keywords: [
-    "Jeffrey",
     "Atuluku Jeffrey",
-    "Smart Contract Security Auditor",
+    "Jeffrey",
     "Web3 Researcher",
+    "Full-Stack Web Builder",
     "Full-Stack Web Developer",
+    "Smart Contract Security",
     "PulseSwitch",
     "ServHive",
     "Port Harcourt",
@@ -47,8 +48,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Atuluku Jeffrey", url: "https://github.com/Jeffrey978" }],
   openGraph: {
-    title: "Jeffrey // Web3 Researcher & Smart Contract Security Auditor",
-    description: "High-assurance protocol audits, Web3 research, and full-stack software architectures.",
+    title: "Atuluku Jeffrey // Web3 Researcher & Full-Stack Builder",
+    description: "High-assurance web applications, decentralized protocol research, and full-stack software architectures.",
     type: "website",
   },
 };

@@ -15,7 +15,7 @@ export default function HomePage() {
           {/* Subtle Live Status Pill */}
           <div className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="uppercase tracking-[0.14em]">PORT HARCOURT, NG &bull; AVAILABLE FOR AUDITS</span>
+            <span className="uppercase tracking-[0.14em]">PORT HARCOURT, NG &bull; AVAILABLE FOR BUILDING &amp; CONTRACTS</span>
           </div>
 
           {/* Understated, Airy 2-Line Headline */}

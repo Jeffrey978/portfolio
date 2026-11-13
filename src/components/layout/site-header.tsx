@@ -40,7 +40,7 @@ export function SiteHeader() {
               {PROFILE.fullName}
             </span>
             <span className="text-[11px] font-mono text-neutral-400 truncate hidden md:inline">
-              Web3 Researcher &amp; Security Auditor
+              Web3 Researcher &amp; Full-Stack Builder
             </span>
           </Link>
         </div>

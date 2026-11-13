@@ -214,7 +214,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const PROFILE = {
   name: "Jeffrey",
   fullName: "Atuluku Jeffrey",
-  role: "Web3 Researcher, Smart Contract Security Auditor & Full-Stack Web Developer",
+  role: "Web3 Researcher & Full-Stack Web Builder",
   degree: "B.Sc. Computer Science",
   location: "Port Harcourt, NG",
   timeZone: "Africa/Lagos",
@@ -225,9 +225,9 @@ export const PROFILE = {
     linkedin: "https://linkedin.com/in/jeffreyatuluku",
   },
   introStatement:
-    "Independent Web3 researcher and smart contract auditor in Port Harcourt. I review protocols and build high-assurance web applications, start to finish.",
+    "Independent Web3 researcher and full-stack web builder based in Port Harcourt. I research decentralized systems and build high-assurance web applications, start to finish.",
   aboutStatement:
-    "I’m Atuluku Jeffrey — Computer Scientist, Web3 researcher and smart contract security auditor. I spend my days analyzing EVM bytecode, dissecting consensus mechanisms, and building web products that can't be tricked.",
+    "I’m Atuluku Jeffrey — Computer Scientist, Web3 researcher and full-stack web builder. I spend my days building high-assurance web products, analyzing decentralized protocols, and engineering systems that can't be tricked.",
   experience: [
     {
       year: "2024—Now",
